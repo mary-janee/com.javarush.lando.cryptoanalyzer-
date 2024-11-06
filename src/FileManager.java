@@ -14,7 +14,7 @@ public class FileManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-             readFile = content.toString();
+            readFile = content.toString();
             return readFile;
             }
 
