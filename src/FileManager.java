@@ -1,4 +1,7 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FileManager {
         public String readFile(String filePath) {
@@ -19,14 +22,33 @@ public class FileManager {
             }
 
 
-        public void writeFile(String content, String filePath) {
+        public boolean writeFile(String content, String filePath) {
             // Логика записи файла
+            boolean output = false;
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
                 writer.write(content);
                 System.out.println("Фаил записан");
+                output = true;
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-
+            }return output;
         }
+
+        public boolean createOutputFolder(String folderPath) {
+            Path path = Paths.get(folderPath);
+            try {
+                if (!Files.exists(path)) {
+                    Files.createDirectories(path);
+                    System.out.println("Папка создана: " + folderPath);
+                } else {
+                    System.out.println("Папка уже существует: " + folderPath);
+                }
+                return true;
+            } catch (IOException e) {
+                System.out.println("Ошибка при создании папки: " + folderPath);
+                e.printStackTrace();
+                return false;
+            }
+        }
+
 }

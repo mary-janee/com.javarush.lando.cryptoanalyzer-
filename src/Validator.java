@@ -73,7 +73,6 @@ public class Validator {
     }
     public boolean isFileExist(String file) {
    try (InputStream inputStream = new FileInputStream(file)) {
-        // Если файл открыт успешно, он существует
         return true;
     } catch (FileNotFoundException e) {
         System.out.println("Файл не найден: " + e.getMessage());
@@ -88,8 +87,8 @@ public class Validator {
         Scanner scanner = new Scanner(System.in);
         boolean input = true;
 
-        while (input == (mode==null)|| (!mode.equals("1")&&!mode.equals("2"))){
-            System.out.println("Введите число от 1 до 2 включительно");
+        while (input == (mode==null)|| (!mode.equals("1")&&!mode.equals("2")&&!mode.equals("3"))){
+            System.out.println("Введите число от 1 до 3 включительно");
             mode = scanner.nextLine();
         }
         return mode;
